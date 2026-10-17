@@ -38,7 +38,7 @@ The checkpoint's check, in one sentence, and your revision bound, `MAX_REVISIONS
 
 The checkpoint’s check passes if the search finds at least one source file (`.ts` or `.tsx`) under `src/`, outside `src/i18n/`, and fails if it returns only documentation, translation files, or no matches.
 
-`MAX_REVISIONS = 2` allows up to two revisions per run, accepted or rejected. One revision is usually enough to fix a search that finds only documentation or translations, as in issue 4203, where the second search found the parser. The second revision allows another attempt if the first revision is rejected or does not help, without making repeated revisions routine.
+`MAX_REVISIONS = 2` allows up to two revisions per run, accepted or rejected. One revision is usually enough to fix a search that finds only documentation or translations, as in issue 4203, where the second search found a source file, `src/ingest/errors.ts`, and the run went on to read `src/ingest/parser.ts`. The second revision allows another attempt if the first revision is rejected or does not help, without making repeated revisions routine.
 
 ## Part D · A second pass before posting
 Your four external checks, one line each, and your bound, `MAX_ROUNDS`, in one
