@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "description": "A RepoMind triage plan: the ordered list of steps to run.",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "description": "The steps, in the order they run. The last step must call post_comment.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique step number, starting at 1."
+          },
+          "action": {
+            "type": "string",
+            "description": "What the step does, in words."
+          },
+          "tool": {
+            "type": "string",
+            "description": "The one tool this step calls; must be in the tool list."
+          },
+          "args_json": {
+            "type": "string",
+            "description": "The tool's arguments as a JSON object encoded as a string. Use \"$fill\" for any value that depends on an earlier step's result."
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {"type": "integer"},
+            "description": "Ids of earlier steps whose results this step uses."
+          },
+          "expected_result": {
+            "type": "string",
+            "description": "What the tool returns when the step worked, so success can be observed."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "done", "failed"],
+            "description": "Execution status; the planner writes pending."
+          }
+        },
+        "required": ["id", "action", "tool", "args_json", "depends_on", "expected_result", "status"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["steps"],
+  "additionalProperties": false
+}

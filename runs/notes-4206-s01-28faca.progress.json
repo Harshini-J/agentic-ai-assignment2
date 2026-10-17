@@ -1,0 +1,16 @@
+{
+  "about": "A record of this run's progress: the steps it has already run, and the paths it has already seen (a search returned them, or a read read them). Not a list of things to do.",
+  "steps_done": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "paths": [
+    "docs/ARCHITECTURE.md",
+    "src/ingest/dedupe.ts",
+    "src/ingest/worker.ts",
+    "test/dedupe.test.ts"
+  ]
+}

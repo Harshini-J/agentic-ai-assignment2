@@ -1,0 +1,22 @@
+{
+  "about": "A record of this run's progress: the steps it has already run, and the paths it has already seen (a search returned them, or a read read them). Not a list of things to do.",
+  "steps_done": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    5,
+    6,
+    7
+  ],
+  "paths": [
+    "src/i18n/en.json",
+    "src/i18n/fr.json",
+    "src/ingest/errors.ts",
+    "src/ingest/parser.ts",
+    "src/api/errors.ts",
+    "src/ingest/queue.ts",
+    "src/ingest/schema.ts"
+  ]
+}

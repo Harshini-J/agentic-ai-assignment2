@@ -20,6 +20,24 @@ can belong to each run_tests step.
 
 from __future__ import annotations
 
+from agent.detectors import match_calls
 
 def diff(plan: dict, trace: list[dict]) -> dict:
-    raise NotImplementedError("Assignment 2 Part E: the diff")
+    """The plan against what ran: each plan step executed, skipped or reordered, and the
+    tool calls that match no step as extra. Calls are matched to steps as in
+    agent.detectors.match_calls: by plan_step when the line has one, otherwise by tool
+    and by the arguments the plan fixes."""
+    taken, extra = match_calls(plan, trace)
+    position = {id(line): i for i, line in enumerate(trace)}   # where each call sits in the trace
+
+    labels, last = {}, -1
+    for step in plan.get("steps") or []:
+        line = taken.get(step.get("id"))
+        if line is None:
+            labels[step.get("id")] = "skipped"
+        elif position[id(line)] > last:
+            labels[step.get("id")] = "executed"
+            last = position[id(line)]
+        else:
+            labels[step.get("id")] = "reordered"   # ran before a step the plan puts earlier
+    return {"steps": labels, "extra": extra}
